@@ -25,11 +25,6 @@ void keyboard_out(uint8_t platoKey);
 void keyboard_main(void);
 
 /**
- * keyboard_clear() - Clear the keyboard buffer
- */
-void keyboard_clear(void);
-
-/**
  * keyboard_out_tty - keyboard output to serial I/O in TTY mode
  */
 void keyboard_out_tty(char ch);

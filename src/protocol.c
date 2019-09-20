@@ -646,15 +646,15 @@ GoMode (void)
     case mMode7:
       terminal_mode_7 (theWord);
       break;
-    /* case mFore: */
-    /*   screen_foreground(&theColor); */
-    /*   break; */
-    /* case mBack: */
-    /*   screen_background(&theColor); */
-    /*   break; */
-    /* case mPaint: */
-    /*   screen_paint(&CurCoord); */
-    /*   break; */
+    case mFore:
+      /* screen_foreground(&theColor); */
+      break;
+    case mBack:
+      /* screen_background(&theColor); */
+      break;
+    case mPaint:
+      /* screen_paint(&CurCoord); */
+      break;
     }
   CMode = PMode;
   CType = PType;
@@ -904,15 +904,15 @@ ShowPLATO (padByte *buff, uint16_t count)
 		  Marginx ();
 		  break;
 		  
-		/* case 0x61: */
-		/*   SetCommand (mFore, tColor); */
-		/*   break; */
-		/* case 0x62: */
-		/*   SetCommand (mBack, tColor); */
-		/*   break; */
-		/* case 0x63: */
-		/*   SetCommand (mPaint, tPaint); */
-		/*   break; */
+		case 0x61:
+		  SetCommand (mFore, tColor);
+		  break;
+		case 0x62:
+		  SetCommand (mBack, tColor);
+		  break;
+		case 0x63:
+		  SetCommand (mPaint, tPaint);
+		  break;
 		}
 	    }
 	  else if (theChar < 0x20)

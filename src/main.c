@@ -21,10 +21,8 @@ void main(void)
   screen_init();
   touch_init();
   terminal_init();
+  screen_splash();
   io_init();
-
-  // Display greeting
-  
   screen_beep();
 
   while (running==true)

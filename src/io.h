@@ -20,11 +20,6 @@
 void io_init(void);
 
 /**
- * io_open() - Open the device
- */
-void io_open(void);
-
-/**
  * io_send_byte(b) - Send specified byte out
  */
 void io_send_byte(uint8_t b);
@@ -38,5 +33,20 @@ void io_main(void);
  * io_done() - Called to close I/O
  */
 void io_done(void);
+
+/**
+ * io_baud - set baud rate
+ */
+void io_baud(unsigned char new_baud);
+
+/**
+ * io_xon - send XON
+ */
+void io_xon(void);
+
+/**
+ * io_xoff - send XON
+ */
+void io_xoff(void);
 
 #endif /* IO_H */

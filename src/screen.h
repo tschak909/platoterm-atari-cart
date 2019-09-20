@@ -18,6 +18,11 @@
 void screen_init(void);
 
 /**
+ * Screen splash
+ */
+void screen_splash(void);
+
+/**
  * screen_wait(void) - Sleep for approx 16.67ms
  */
 void screen_wait(void);
