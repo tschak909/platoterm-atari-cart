@@ -12,6 +12,8 @@
 #include "io.h"
 #include "protocol.h"
 
+extern bool running;
+
 static struct ser_params params = {
   SER_BAUD_1200,
   SER_BITS_8,
@@ -36,6 +38,12 @@ uint8_t xoff_enabled=false;
 void io_init(void)
 {
   io_res=ser_install(atrrdev_ser);
+  if (io_res!=SER_ERR_OK)
+    {
+      running=false;
+      return;
+    }
+  
   io_baud(SER_BAUD_1200);
 }
 
