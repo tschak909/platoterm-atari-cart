@@ -48,7 +48,7 @@ unsigned short touch_scale_192(short y)
  */
 void touch_init(void)
 {
-  mouse_install(&mouse_def_callbacks,atrjoy_mou);
+  mouse_install(&mouse_def_callbacks,atrami_mou);
   mouse_show();
 }
 

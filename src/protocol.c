@@ -40,14 +40,14 @@ static padByte charBuff[BSIZE];
 static uint16_t charCount;	/* Count of characters currently buffered */
 static padPt charCoord;
 
-extern uint8_t terminal_get_features(void);
-extern uint8_t terminal_get_type(void);
-extern uint8_t terminal_get_subtype(void);
-extern uint8_t terminal_get_load_file(void);
-extern uint8_t terminal_get_configuration(void);
+/* extern uint8_t terminal_get_features(void); */
+/* extern uint8_t terminal_get_type(void); */
+/* extern uint8_t terminal_get_subtype(void); */
+/* extern uint8_t terminal_get_load_file(void); */
+/* extern uint8_t terminal_get_configuration(void); */
 extern uint16_t terminal_get_char_address(void);
-extern padByte terminal_mem_read(padWord addr);
-extern padByte terminal_ext_in(void);
+/* extern padByte terminal_mem_read(padWord addr); */
+/* extern padByte terminal_ext_in(void); */
 
 extern void screen_wait(void);
 extern void screen_beep(void);
@@ -58,16 +58,16 @@ extern void screen_line_draw(padPt* Coord1, padPt* Coord2);
 extern void screen_char_draw(padPt* Coord, unsigned char* ch, unsigned char count);
 extern void screen_tty_char(padByte theChar);
 /* extern void screen_paint(padPt* Coord); */
-extern void terminal_mem_load(padWord addr, padWord value);
+/* extern void terminal_mem_load(padWord addr, padWord value); */
 extern void terminal_char_load(padWord charnum, charData theChar);
-extern void terminal_mode_5(padWord value);
-extern void terminal_mode_6(padWord value);
-extern void terminal_mode_7(padWord value);
+/* extern void terminal_mode_5(padWord value); */
+/* extern void terminal_mode_6(padWord value); */
+/* extern void terminal_mode_7(padWord value); */
 extern void touch_allow(padBool allow);
-extern void terminal_ext_allow(padBool allow);
-extern void terminal_set_ext_in(padWord device);
-extern void terminal_set_ext_out(padWord device);
-extern void terminal_ext_out(padByte value);
+/* extern void terminal_ext_allow(padBool allow); */
+/* extern void terminal_set_ext_in(padWord device); */
+/* extern void terminal_set_ext_out(padWord device); */
+/* extern void terminal_ext_out(padByte value); */
 extern void screen_clear(void);
 extern void terminal_set_tty(void);
 extern void terminal_set_plato(void);
@@ -503,22 +503,22 @@ LoadEchox (void)
 	Echo (0x52);		/* flow control not on */
       break;
     case 0x60:                  /* Inquire about ascii specific features. */
-      Echo (terminal_get_features());
+      Echo (0x01);
       break;
     case 0x70:
-      Echo (terminal_get_type ());	/* terminal type */
+      Echo (12);	/* terminal type */
       break;
 
     case 0x71:
-      Echo (terminal_get_subtype());	/* subtype */
+      Echo (16);	/* subtype */
       break;
 
     case 0x72:
-      Echo (terminal_get_load_file ());	/* load file */
+      Echo (0);	/* load file */
       break;
 
     case 0x73:
-      Echo (terminal_get_configuration ());	/* configuration */
+      Echo (0x40);	/* configuration */
       break;
 
     case 0x7A:
@@ -530,7 +530,7 @@ LoadEchox (void)
       break;			/* beep */
 
     case 0x7D:
-      Echo (terminal_mem_read (MemAddr) & 0x7F);
+      Echo (0x7F);
       break;
 
     default:
@@ -554,7 +554,7 @@ LoadCharx (void)
     CharCnt++;
   else
     {
-      terminal_char_load ((((MemAddr - terminal_get_char_address ()) >> 4) & 0x7f), Char);
+      terminal_char_load ((((MemAddr - 0x3000) >> 4) & 0x7f), Char);
       CharCnt = 0;
       MemAddr += 16;
     }
@@ -563,7 +563,7 @@ LoadCharx (void)
 void
 LoadMemx (void)
 {
-  terminal_mem_load (MemAddr, theWord);
+  /* terminal_mem_load (MemAddr, theWord); */
   MemAddr += 2;
 }
 
@@ -575,28 +575,28 @@ SSFx (void)
   device = (theWord >> 10) & 0xFF;
   if (device == 1)
     {
-      terminal_ext_allow ((theWord >> 3) & 1);
+      /* terminal_ext_allow ((theWord >> 3) & 1); */
       touch_allow ((theWord >> 5) & 1);
     }
   else if ((theWord >> 9) & 1)
     {
-      terminal_set_ext_in (device);
+      /* terminal_set_ext_in (device); */
       if (!((theWord >> 8) & 1))
-	Ext (terminal_ext_in ());
+	Ext (0);
     }
   else
     {
-      terminal_set_ext_out (device);
-      if (!((theWord >> 8) & 1))
-	terminal_ext_out (theWord & 0xFF);
+      /* terminal_set_ext_out (device); */
+      /* if (!((theWord >> 8) & 1)) */
+      /* 	terminal_ext_out (theWord & 0xFF); */
     }
 }
 
 void
 Externalx (void)
 {
-  terminal_ext_out ((theWord >> 8) & 0xFF);
-  terminal_ext_out (theWord & 0xFF);
+  /* terminal_ext_out ((theWord >> 8) & 0xFF); */
+  /* terminal_ext_out (theWord & 0xFF); */
 }
 
 void
@@ -638,13 +638,13 @@ GoMode (void)
       LoadMemx ();
       break;
     case mMode5:
-      terminal_mode_5 (theWord);
+      /* terminal_mode_5 (theWord); */
       break;
     case mMode6:
-      terminal_mode_6 (theWord);
+      /* terminal_mode_6 (theWord); */
       break;
     case mMode7:
-      terminal_mode_7 (theWord);
+      /* terminal_mode_7 (theWord); */
       break;
     case mFore:
       /* screen_foreground(&theColor); */

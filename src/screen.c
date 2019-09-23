@@ -16,7 +16,7 @@ extern void screen_beep(void);
 extern uint16_t mul0625(uint16_t val);
 extern uint16_t mul0375(uint16_t val);
 extern void RenderGlyph(void);
-extern uint8_t font[];
+extern const uint8_t font[];
 extern uint8_t fontm23[];
 extern uint8_t FONT_SIZE_X;
 extern uint8_t FONT_SIZE_Y;
@@ -31,7 +31,7 @@ unsigned char Flags;
 unsigned char* GlyphData;
 static short offset;
 
-static const char s1[]="PLATOTERM 1.3 - Joystick";
+static const char s1[]="PLATOTERM 1.3 - Amiga Mouse";
 static const char s2[]="(C) 2019 IRATA.ONLINE";
 static const char s3[]="TERMINAL READY";
 
@@ -122,11 +122,11 @@ void screen_char_draw(padPt* Coord, unsigned char* ch, unsigned char count)
   switch(CurMem)
     {
     case M0:
-      GlyphData=font;
+      GlyphData=(unsigned char *)font;
       offset=-32;
       break;
     case M1:
-      GlyphData=font;
+      GlyphData=(unsigned char *)font;
       offset=64;
       break;
     case M2:

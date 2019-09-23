@@ -192,7 +192,7 @@
 #define PKEY_EQUIVALENT 0xB4
 
 /* ACCESS Key combinations. */
-static uint8_t ACCESS_KEYS[] = {
+const uint8_t ACCESS_KEYS[] = {
   PKEY_a, /* 0x80 a ɑ alpha */ 
   PKEY_B, /* 0x81 b ß beta */
   PKEY_c, /* 0x82 c cedilla */
