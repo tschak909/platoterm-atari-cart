@@ -8,6 +8,7 @@
 	.import	MOVE, BUTTONS, POS, INFO, IOCTL, IRQ
 
 ;	.export	CHIDE, CSHOW, CPREP, CDRAW, CMOVEX, CMOVEY
+	.import	CHIDE
 	.import	IRQ_WORKER, IRQ_WORKER_RETURN
 	.import	XPosWrk, YPosWrk
 	.import	dumx, dumy
@@ -46,13 +47,19 @@ libref: .addr   $0000
 
 ; Callback table, set by the kernel before INSTALL is called
 
-.if 0
-CHIDE:  jmp     $0000                   ; Hide the cursor
-CSHOW:  jmp     $0000                   ; Show the cursor
-CPREP:  jmp     $0000                   ; Prepare to move the cursor
-CDRAW:  jmp     $0000                   ; Draw the cursor
-CMOVEX: jmp     $0000                   ; Move the cursor to X coord
-CMOVEY: jmp     $0000                   ; Move the cursor to Y coord
+.if 1
+CHIDE_local:
+	jmp     $0000                   ; Hide the cursor
+;CSHOW:
+	jmp     $0000                   ; Show the cursor
+;CPREP:
+	jmp     $0000                   ; Prepare to move the cursor
+;CDRAW:
+	jmp     $0000                   ; Draw the cursor
+;CMOVEX:
+	jmp     $0000                   ; Move the cursor to X coord
+;CMOVEY:
+	jmp     $0000                   ; Move the cursor to Y coord
 .else
 	.res	6*3, $ff
 .endif
@@ -74,6 +81,12 @@ INSTALL_ami:
 	sta	IRQ_WORKER
 	lda	#>irq_worker
 	sta	IRQ_WORKER + 1
+	; copy mouse callback pointers
+	ldx	#6*3-1
+:	lda	CHIDE_local,x
+	sta	CHIDE,x
+	dex
+	bpl	:-
 	jmp	INSTALL
 
 irq_worker:
