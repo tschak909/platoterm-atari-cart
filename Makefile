@@ -295,7 +295,7 @@ $(TARGETOBJDIR)/%.o: %.c | $(TARGETOBJDIR)
 vpath %.s $(SRCDIR)/$(TARGETLIST) $(SRCDIR)
  
 $(TARGETOBJDIR)/%.o: %.s | $(TARGETOBJDIR)
-	$(CC) -t $(CC65TARGET) -c --create-dep $(@:.o=.d) $(ASFLAGS) -o $@ $<
+	$(CC) -t $(CC65TARGET) -Wa -DDYN_DRV=0 -c --create-dep $(@:.o=.d) $(ASFLAGS) -o $@ $<
  
 vpath %.asm $(SRCDIR)/$(TARGETLIST) $(SRCDIR)
  
