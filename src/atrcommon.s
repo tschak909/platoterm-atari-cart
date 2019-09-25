@@ -29,11 +29,14 @@ DISABLE_TIMEOUT =       30              ; # of vertical blank interrupts after w
 	.export		IRQ_WORKER_RETURN
 
 	.export	XPosWrk, YPosWrk
+	.export	DefVars
 
 	.export	INSTALL, UNINSTALL, HIDE, SHOW, SETBOX, GETBOX
 	.export	MOVE, BUTTONS, POS, INFO, IOCTL, IRQ
 
 	.import	CHIDE, CSHOW, CPREP, CDRAW, CMOVEX, CMOVEY
+
+	.export	YPos, XPos, XMin, YMin, XMax, YMax, Buttons
 
 
 .if .not ( .defined (AMIGA_MOUSE) .or .defined (TRAK_MOUSE))
