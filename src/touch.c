@@ -46,9 +46,9 @@ unsigned short touch_scale_192(short y)
 /**
  * touch_init() - Set up touch screen
  */
-void touch_init(void)
+void touch_init(void* driver)
 {
-  mouse_install(&mouse_def_callbacks,atrami_mou);
+  mouse_install(&mouse_def_callbacks,driver);
   mouse_show();
 }
 

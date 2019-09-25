@@ -16,8 +16,10 @@
 #include "plato_key.h"
 #include "key.h"
 #include "io.h"
+#include "touch.h"
 
 extern padBool TTY;
+#pragma zpsym("TTY")
 extern void click();
 extern padPt TTYLoc;
 extern bool running;
@@ -85,6 +87,36 @@ void keyboard_main(void)
 	io_xoff();
       else if (key==47)
 	io_xon();
+      else if (key==1)
+	{
+	  touch_done();
+	  touch_init(atrjoy_mou);
+	  ShowPLATO("JOYSTICK",8);
+	}
+      else if (key==63)
+	{
+	  touch_done();
+	  touch_init(atrami_mou);
+	  ShowPLATO("AMIGA",5);
+	}
+      else if (key==23)
+	{
+	  touch_done();
+	  touch_init(atrami_mou);
+	  ShowPLATO("ST",2);
+	}
+      else if (key==40)
+	{
+	  touch_done();
+	  touch_init(atrtrk_mou);
+	  ShowPLATO("TRAKBALL",8);
+	}
+      else if (key==5)
+	{
+	  touch_done();
+	  touch_init(atrtt_mou);
+	  ShowPLATO("TABLET",6);
+	}
       
       TTYLoc.y-=16;
       POKE(764,255);

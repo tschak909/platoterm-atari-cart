@@ -15,7 +15,7 @@
 
 .include "zeropage.inc"
 .include "atari.inc"
-.import _cx, _cy, _CharCode, _GlyphData, _Flags
+.importzp _cx, _cy, _CharCode, _GlyphData, _Flags
 .export _RenderGlyph
 
 .define PixelOffset tmp1

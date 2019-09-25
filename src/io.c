@@ -24,7 +24,7 @@ static struct ser_params params = {
 
 static uint8_t ch=0;
 static uint8_t io_res;
-static uint8_t recv_buffer[2048];
+static uint8_t recv_buffer[1024];
 static uint16_t recv_buffer_size=0;
 
 extern padPt TTYLoc;
@@ -61,7 +61,7 @@ void io_send_byte(uint8_t b)
 void io_main(void)
 {
   // Drain primary serial FIFO as fast as possible.
-  while ((ser_get(&ch)!=SER_ERR_NO_DATA) && (recv_buffer_size<2048))
+  while ((ser_get(&ch)!=SER_ERR_NO_DATA) && (recv_buffer_size<sizeof(recv_buffer)))
     {
       recv_buffer[recv_buffer_size++]=ch;
       if ((recv_buffer_size>512) && (xoff_enabled==false))

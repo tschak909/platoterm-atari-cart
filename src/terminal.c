@@ -41,6 +41,13 @@ extern uint8_t CharWide;
 extern uint8_t CharHigh;
 extern padPt TTYLoc;
 
+#pragma zpsym("CurMem")
+#pragma zpsym("CurMode")
+#pragma zpsym("ModeBold")
+#pragma zpsym("Reverse")
+#pragma zpsym("Rotate")
+#pragma zpsym("TTY")
+
 /**
  * terminal_init()
  * Initialize terminal state

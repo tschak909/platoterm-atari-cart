@@ -12,6 +12,11 @@
 #include "screen.h"
 #include "font.h"
 
+#pragma zpsym("CurMem")
+#pragma zpsym("CurMode")
+#pragma zpsym("ModeBold")
+#pragma zpsym("Reverse")
+
 extern void screen_beep(void);
 extern uint16_t mul0625(uint16_t val);
 extern uint16_t mul0375(uint16_t val);
@@ -24,14 +29,19 @@ extern uint8_t FONT_SIZE_Y;
 unsigned char CharWide=8;
 unsigned char CharHigh=16;
 padPt TTYLoc;
+
+#pragma bss-name (push,"ZEROPAGE")
+#pragma data-name(push,"ZEROPAGE")
 unsigned short cx;
 unsigned char cy;
 unsigned char CharCode;
 unsigned char Flags;
 unsigned char* GlyphData;
 static short offset;
+#pragma bss-name (pop)
+#pragma data-name(pop)
 
-static const char s1[]="PLATOTERM 1.3 - Amiga Mouse";
+static const char s1[]="PLATOTERM 1.3";
 static const char s2[]="(C) 2019 IRATA.ONLINE";
 static const char s3[]="TERMINAL READY";
 

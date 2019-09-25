@@ -15,7 +15,7 @@
 /**
  * touch_init() - Set up touch screen
  */
-void touch_init(void);
+void touch_init(void* driver);
 
 /**
  * touch_main() - Main loop for touch screen

@@ -17,6 +17,9 @@
 
 #define	BSIZE	64
 
+#pragma bss-name (push,"ZEROPAGE")
+#pragma data-name(push,"ZEROPAGE")
+
 static padBool EscFlag;		/* Currently in an escape sequence */
 static Mode PMode,		/* Mode */
   CMode;			/* Command */
@@ -36,9 +39,13 @@ static padWord Margin;		/* Margin for CR */
 static padWord MemAddr;		/* Load address for program data */
 static uint16_t CharCnt;	/* Current count for loading chars */
 static charData Char;		/* Character data */
-static padByte charBuff[BSIZE];
-static uint16_t charCount;	/* Count of characters currently buffered */
+static uint16_t charCount;     /* Count of characters currently buffered */
 static padPt charCoord;
+
+#pragma bss-name (pop)
+#pragma data-name(pop)
+
+static padByte charBuff[BSIZE];
 
 /* extern uint8_t terminal_get_features(void); */
 /* extern uint8_t terminal_get_type(void); */
@@ -118,6 +125,10 @@ static const padByte PTAT1[128] = {
 /*	externally referenced variables	*/
 
 padPt PLATOSize={512,512};	/* Logical screen size */
+
+#pragma bss-name (push,"ZEROPAGE")
+#pragma data-name(push,"ZEROPAGE")
+
 CharMem CurMem;			/* Font to plot in */
 padBool TTY,			/* TTY mode */
   FlowControl,			/* Flow control on */
@@ -126,6 +137,8 @@ padBool TTY,			/* TTY mode */
 DispMode CurMode;		/* Current PLATO plotting mode */
 padBool FastText;               /* Indicate to main program if text optimizations can be done. */
 
+#pragma bss-name (pop)
+#pragma data-name(pop)
 
 /*----------------------------------------------*
  *	InitPAD, InitTTY, InitPLATO		*
