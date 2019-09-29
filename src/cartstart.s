@@ -19,6 +19,11 @@ cartstart:
 	        lda     #$00
 	        sta     $D500
 	        jsr     copydata
+	        lda     #$00
+	        sta     $02E5
+	        lda     #$21
+	        sta     $02E6
+
                 jsr     start                   ; run program
                 jmp     (DOSVEC)                ; return to DOS
 	

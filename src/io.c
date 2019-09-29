@@ -29,6 +29,8 @@ static uint16_t recv_buffer_size=0;
 
 extern padPt TTYLoc;
 
+extern unsigned char io_handler_load();
+
 uint8_t xoff_enabled=false;
 
 
@@ -37,6 +39,7 @@ uint8_t xoff_enabled=false;
  */
 void io_init(void)
 {
+  io_handler_load();
   io_res=ser_install(atrrdev_ser);
   if (io_res!=SER_ERR_OK)
     {
@@ -64,7 +67,7 @@ void io_main(void)
   while ((ser_get(&ch)!=SER_ERR_NO_DATA) && (recv_buffer_size<2048))
     {
       recv_buffer[recv_buffer_size++]=ch;
-      if ((recv_buffer_size>512) && (xoff_enabled==false))
+      if ((recv_buffer_size>96) && (xoff_enabled==false))
 	io_xoff();
     }
 

@@ -31,7 +31,7 @@ unsigned char Flags;
 unsigned char* GlyphData;
 static short offset;
 
-static const char s1[]="PLATOTERM 1.3 - Amiga Mouse";
+static const char s1[]="PLATOTERM 1.3 - No Touch 16K";
 static const char s2[]="(C) 2019 IRATA.ONLINE";
 static const char s3[]="TERMINAL READY";
 

@@ -8,6 +8,7 @@
 
 .segment        "UPPERBANK"
 	
-cartinit:       rts
+cartinit:
+	rts
 
 .endif  ; .ifndef __ATARIXL__
